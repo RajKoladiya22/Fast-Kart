@@ -20,14 +20,9 @@ app.use(session({
     }
 }));
 
-
-
-
-
 app.set('view engine', 'ejs');
 app.use('/public',express.static(path.join(__dirname,'public')));
 app.use('/uploads',express.static(path.join(__dirname,'uploads')));
-
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -36,9 +31,6 @@ app.use(passport.setUser);
 app.use('/',require('./routes/loginRoutes'));
 app.use('/',require('./routes/adminroutes/CrudRoutes'));
 app.use('/',require('./routes/adminroutes/adminindexRoutes'));
-
-
-
 
 app.listen(port, (err)=>{
     if(err){

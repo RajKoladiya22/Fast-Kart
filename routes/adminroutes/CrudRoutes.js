@@ -17,5 +17,6 @@ const fileUpload = multer({
 }).single('cat_img');
 
 routes.post('/category', fileUpload, CrudController.Addcategory);
+routes.post('/subcategory', fileUpload, CrudController.Addsubcategory);
 
 module.exports=routes;

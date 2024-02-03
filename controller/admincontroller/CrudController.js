@@ -1,4 +1,6 @@
+const { default: mongoose } = require('mongoose');
 const CategoryModel = require('../../models/categorymodel');
+const SubcategoryModel = require('../../models/subcategorymodel');
 
 
 const Addcategory = async(req, res)=>{
@@ -11,6 +13,24 @@ const Addcategory = async(req, res)=>{
         });
         if(Add){
             console.log('Category Added');
+            return res.redirect('/addcategorylist');
+        }
+    } catch(err){
+        console.log(err);
+        return false;
+    }
+}
+
+const Addsubcategory = async(req, res)=>{
+    try{
+        const {cat_name, subcat_name}=req.body;
+        let Add = await SubcategoryModel.create({
+            cat_name,
+            categoryId : cat_name,
+            subcat_name, 
+        });
+        if(Add){
+            console.log('Subcategory Added');
             return res.redirect('back');
         }
     } catch(err){
@@ -21,4 +41,5 @@ const Addcategory = async(req, res)=>{
 
 module.exports={
     Addcategory,
+    Addsubcategory,
 }
