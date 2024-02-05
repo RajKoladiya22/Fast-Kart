@@ -460,74 +460,46 @@
                                     </button>
                                     <div class="categories-list">
                                         <ul>
-                                            <li>
-                                                <a href="#" class="d-flex align-items-center justify-content-between">
-                                                    <div class="d-flex align-items-center"><img
-                                                            src="/public/assets//img/harvest.png" width="23" alt="">
-                                                        <h3>Vegetables & Fruit</h3>
-                                                    </div><i class="ri-arrow-right-s-line"></i>
-                                                </a>
-                                                <div class="categories-list-1 d-flex">
-                                                    <div class="col-xxl-6">
-                                                        <h3>Origanal Vegetables</h3>
-                                                        <ul>
-                                                            <li><a href="#">Potato & Tomato</a></li>
-                                                            <li><a href="#">Cucumber & Capsicums</a></li>
-                                                            <li><a href="#">Leafy Vegetables</li>
-                                                            <li><a href="#">Root Vegetables</a></li>
-                                                            <li><a href="#">Beeans & Okra</a></li>
-                                                            <li><a href="#">Cabbage & Cauliflower</a></li>
-                                                            <li><a href="#">Gourd & Drumstick</a></li>
-                                                            <li><a href="#">Specialty</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-xxl-6">
-                                                        <h3>Fresh Fruit</h3>
-                                                        <ul>
-                                                            <li><a href="#">Banana & Papaya</a></li>
-                                                            <li><a href="#">Kiwi, Citrus Fruit</a></li>
-                                                            <li><a href="#">Apples & Pomegranate</a></li>
-                                                            <li><a href="#">Seasonal Fruits</a></li>
-                                                            <li><a href="#">Mangoes</a></li>
-                                                            <li><a href="#">Fruit Baskets</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="d-flex align-items-center justify-content-between">
-                                                    <div class="d-flex align-items-center"><img
-                                                            src="/public/assets//img/hot-beverage.png" width="23" alt="">
-                                                        <h3>Beverages</h3>
-                                                    </div><i class="ri-arrow-right-s-line"></i>
-                                                </a>
-                                                <div class="categories-list-2 d-flex">
-                                                    <div class="col-xxl-6">
-                                                        <h3>Origanal Vegetables</h3>
-                                                        <ul>
-                                                            <li><a href="#">Potato & Tomato</a></li>
-                                                            <li><a href="#">Cucumber & Capsicums</a></li>
-                                                            <li><a href="#">Leafy Vegetables</li>
-                                                            <li><a href="#">Root Vegetables</a></li>
-                                                            <li><a href="#">Beeans & Okra</a></li>
-                                                            <li><a href="#">Cabbage & Cauliflower</a></li>
-                                                            <li><a href="#">Gourd & Drumstick</a></li>
-                                                            <li><a href="#">Specialty</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-xxl-6">
-                                                        <h3>Fresh Fruit</h3>
-                                                        <ul>
-                                                            <li><a href="#">Banana & Papaya</a></li>
-                                                            <li><a href="#">Kiwi, Citrus Fruit</a></li>
-                                                            <li><a href="#">Apples & Pomegranate</a></li>
-                                                            <li><a href="#">Seasonal Fruits</a></li>
-                                                            <li><a href="#">Mangoes</a></li>
-                                                            <li><a href="#">Fruit Baskets</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
+
+                                            
+                                         
+                                                <% category.map(cat => { %>
+                                                    <li>
+                                                        <a href="#" class="d-flex align-items-center justify-content-between">
+                                                            <div class="d-flex align-items-center">
+                                                                <img src="<%= cat.cat_icon %>" width="23" alt="">
+                                                                <h3><%= cat.cat_name %></h3>
+                                                            </div>
+                                                            <i class="ri-arrow-right-s-line"></i>
+                                                        </a>
+                                                        <div class="categories-list-2 d-flex">
+                                                            <!-- Filter subcategories based on the current category's ID -->
+                                                            <% const filteredSubcategories = subcategories.filter(sub => sub.categoryId._id.toString() === cat._id.toString()); %>
+                                                            <% if (filteredSubcategories.length > 0) { %>
+                                                                <div class="col-xxl-6">
+                                                                    <h3>Original</h3>
+                                                                    <ul>
+                                                                        <% filteredSubcategories.forEach(subcategory => { %>
+                                                                            <li><a href="#"><%= subcategory.subcat_name %></a></li>
+                                                                        <% }); %>
+                                                                    </ul>
+                                                                </div>
+                                                            <% } %>
+                                                            <!-- Add similar blocks for other subcategories -->
+                                                        </div>
+                                                    </li>
+                                                <% }); %>
+                                           
+                                            
+                                            
+
+
+
+
+
+
+                                            
+<!--                                             
                                             <li>
                                                 <a href="#" class="d-flex align-items-center justify-content-between">
                                                     <div class="d-flex align-items-center"><img
@@ -663,7 +635,7 @@
                                                         </ul>
                                                     </div>
                                                 </div>
-                                            </li>
+                                            </li> -->
                                         </ul>
                                     </div>
                                 </div>
@@ -1019,66 +991,16 @@
                     <div class="side-category">
                         <h3>Category</h3>
                         <ul class="side-category-list  d-flex flex-wrap">
-                            <li class="d-flex align-items-center">
-                                <img src="/public/assets//img/vegetable.svg" width="25">
-                                <a href="#">
-                                    Vegetables & Fruits
-                                </a>
-                            </li>
-                            <li>
-                                <img src="/public/assets//img/cup.svg" width="25">
-                                <a href="#">
-                                    Beverages
-                                </a>
-                            </li>
-                            <li>
-                                <img src="/public/assets//img/meats.svg" width="25">
-                                <a href="#">
-                                    Meats & Seafood
-                                </a>
-                            </li>
-                            <li>
-                                <img src="/public/assets//img/breakfast.svg" width="25">
-                                <a href="#">
-                                    Breakfast & Dairy
-                                </a>
-                            </li>
-                            <li>
-                                <img src="/public/assets//img/frozen.svg" width="25">
-                                <a href="#">
-                                    Frozen Foods
-                                </a>
-                            </li>
-                            <li>
-                                <img src="/public/assets//img/biscuit.svg" width="25">
-                                <a href="#">
-                                    Biscuits & Snacks
-                                </a>
-                            </li>
-                            <li>
-                                <img src="/public/assets//img/grocery.svg" width="25">
-                                <a href="#">
-                                    Grocery & Staples
-                                </a>
-                            </li>
-                            <li>
-                                <img src="/public/assets//img/drink.svg" width="25">
-                                <a href="#">
-                                    Wines & Alcohol Drinks
-                                </a>
-                            </li>
-                            <li>
-                                <img src="/public/assets//img/milk.svg" width="25">
-                                <a href="#">
-                                    Milk & Dairies
-                                </a>
-                            </li>
-                            <li>
-                                <img src="/public/assets//img/pet.svg" width="25">
-                                <a href="#">
-                                    Pet Foods
-                                </a>
-                            </li>
+                            <% category.map((cat)=>{ %>
+                                <li>
+                                    <img src="<%= cat.cat_icon %>" width="25">
+                                    <a href="#">
+                                        <%= cat.cat_name %>
+                                    </a>
+                                </li>
+                            <% }) %>
+                            
+                            
                         </ul>
                         <ul class="value-list gap-3 d-flex flex-wrap">
                             <li>
@@ -1897,34 +1819,14 @@
                             </div>
                         </div>
                         <div id="top-category" class="col-xxl-12 d-flex justify-content-between gap-3">
-                            <div class="bowse-category justify-content-center  flex-wrap" style="width: 172px;">
-                                <img src="/public/assets//img/vegetable.svg" width="45" height="45">
-                                <h5>Vegetables</h5>
-                            </div>
-                            <div class="bowse-category justify-content-center  flex-wrap" style="width: 172px;">
-                                <img src="/public/assets//img/cup.svg" width="45" height="45">
-                                <h5>Beverages</h5>
-                            </div>
-                            <div class="bowse-category justify-content-center  flex-wrap" style="width: 172px;">
-                                <img src="/public/assets//img/meats.svg" width="45" height="45">
-                                <h5>Meats & S..</h5>
-                            </div>
-                            <div class="bowse-category justify-content-center  flex-wrap" style="width: 172px;">
-                                <img src="/public/assets//img/breakfast.svg" width="45" height="45">
-                                <h5>Breakfast</h5>
-                            </div>
-                            <div class="bowse-category justify-content-center  flex-wrap" style="width: 172px;">
-                                <img src="/public/assets//img/frozen.svg" width="45" height="45">
-                                <h5>Frozen</h5>
-                            </div>
-                            <div class="bowse-category justify-content-center  flex-wrap" style="width: 172px;">
-                                <img src="/public/assets//img/milk.svg" width="45" height="45">
-                                <h5>Milk & D..</h5>
-                            </div>
-                            <div class="bowse-category justify-content-center  flex-wrap" style="width: 172px;">
-                                <img src="/public/assets//img/pet.svg" width="45" height="45">
-                                <h5>Pet Food</h5>
-                            </div>
+                            <% category.map((cat)=>{%>
+                                <div class="bowse-category justify-content-center  flex-wrap" style="width: 172px;">
+                                    <img src="<%= cat.cat_icon %>" width="45" height="45">
+                                    <h5><%= cat.cat_name %></h5>
+                                </div>
+                            <%}) %>
+                            
+                            
                         </div>
                     </div>
                     <!-- ===Bowse-By-Categories-end=== -->

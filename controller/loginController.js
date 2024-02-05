@@ -1,4 +1,6 @@
 const SignUpModel = require('../models/signupmodel');
+const CategoryModel = require('../models/categorymodel');
+const Subcategory = require('../models/subcategorymodel');
 
 const loginPage = async(req, res)=>{
     if(res.locals.users){
@@ -33,12 +35,14 @@ const AddUser = async(req, res)=>{
     }
 }
 
-const loginUser = (req,res) => {
+const loginUser = async (req,res) => {
     return res.redirect('/index')
 }
 
 const IndexPage = async(req, res)=>{
-    return res.render('index');
+    let subcategories = await Subcategory.find({}).populate("categoryId");
+    let category = await CategoryModel.find({}).sort({ lastUpdateTime : -1});
+    return res.render('index',  {category, subcategories});
 }
 
 module.exports={

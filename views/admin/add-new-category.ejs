@@ -44,11 +44,16 @@
                                                         <select name="cat_icon" id="iconSelect" onchange="updateImagePreview(this.value)">
                                                             <option value="">Select Icon</option>
                                                             <% const icons = [
-                                                                "/public/admin assets/svg/1/vegetable.svg",
-                                                                "/public/admin assets/svg/1/cup.svg",
+                                                                "/public/admin assets/svg/1/biscuit.svg",
                                                                 "/public/admin assets/svg/1/breakfast.svg",
+                                                                "/public/admin assets/svg/1/cup.svg",
+                                                                "/public/admin assets/svg/1/drink.svg",
                                                                 "/public/admin assets/svg/1/frozen.svg",
+                                                                "/public/admin assets/svg/1/grocery.svg",
+                                                                "/public/admin assets/svg/1/meats.svg",
+                                                                "/public/admin assets/svg/1/milk.svg",
                                                                 "/public/admin assets/svg/1/pet.svg",
+                                                                "/public/admin assets/svg/1/vegetable.svg",
                                                             ] %>
                                                             <% icons.forEach((icon) => { %>
                                                                 <option value="<%= icon %>"><%= icon %></option>
