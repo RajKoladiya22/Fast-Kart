@@ -1043,7 +1043,7 @@ header {
 
                     .categories-list-2 {
                         @include categories-list();
-                        top: -255%;
+                        top: 0%;
                     }
 
                     .categories-list-3 {

@@ -44,4 +44,5 @@ passport.chekUser=(req, res, next)=>{
     return res.redirect('/')
 }
 
+
 module.exports=passport;

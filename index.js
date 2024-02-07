@@ -7,8 +7,12 @@ const path = require('path');
 const passport= require('passport');
 const passportStrategy = require('./config/passportstretegy');
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
+
+app.use(cookieParser());
 
 app.use(express.urlencoded());
+
 
 app.use(session({
     name :'Abc',
@@ -20,6 +24,7 @@ app.use(session({
     }
 }));
 
+
 app.set('view engine', 'ejs');
 app.use('/public',express.static(path.join(__dirname,'public')));
 app.use('/uploads',express.static(path.join(__dirname,'uploads')));
@@ -27,6 +32,13 @@ app.use('/uploads',express.static(path.join(__dirname,'uploads')));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setUser);
+
+app.use(setNoCache = (req, res, next) => {
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+    next();
+})
 
 app.use('/',require('./routes/loginRoutes'));
 app.use('/',require('./routes/adminroutes/CrudRoutes'));
