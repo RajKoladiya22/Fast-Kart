@@ -1,5 +1,16 @@
 <%- include('header') %>
 
+<% if(messages && messages.length>0){%>
+    <div class="hilirio alert">
+        <div class=" alertmag m-0" role="alert">
+            <strong>
+                <%= messages %>
+            </strong>
+        </div>
+    </div>
+    <%} %>
+    
+    
             <!-- Container-fluid starts-->
             <div class="page-body">
                 <!-- All User Table Start -->
@@ -234,7 +245,7 @@
 
     <!-- Plugins JS -->
     <script src="/public/admin assets/js/sidebar-menu.js"></script>
-    <script src="/public/admin assets/js/notify/bootstrap-notify.min.js"></script>
+    <!-- <script src="/public/admin assets/js/notify/bootstrap-notify.min.js"></script> -->
     <script src="/public/admin assets/js/notify/index.js"></script>
 
     <!-- Data table js -->

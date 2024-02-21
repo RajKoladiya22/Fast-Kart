@@ -4,6 +4,20 @@
             <div class="page-body">
                 <div class="container-fluid">
                     <div class="row">
+                        <center>
+                            <table>
+                                <% product.map((val)=>{ %>
+                                    <tr>
+                                        <td><%= val.pro_name %></td>
+                                        <td>
+                                            <% val.pro_Thumb.forEach((img)=>{%>
+                                            <img src="<%= img %>" class=" img-fluid" alt="" width="50">
+                                            <%}) %>
+                                        </td>
+                                    </tr>
+                                <%}) %>
+                            </table>
+                        </center>
                         <!-- chart caard section start -->
                         <div class="col-sm-6 col-xxl-3 col-lg-6">
                             <div class="main-tiles border-5 border-0  card-hover card o-hidden">
@@ -686,7 +700,7 @@
                     <footer class="footer">
                         <div class="row">
                             <div class="col-md-12 footer-copyright text-center">
-                                <p class="mb-0">Copyright 2022 © Fastkart theme by pixelstrap</p>
+                                <p class="mb-0">Copyright 2022 © Fastkart theme by Raj_Koladiya</p>
                             </div>
                         </div>
                     </footer>
@@ -740,7 +754,7 @@
 
     <!-- Plugins JS -->
     <script src="/public/admin assets/js/sidebar-menu.js"></script>
-    <script src="/public/admin assets/js/notify/bootstrap-notify.min.js"></script>
+    <!-- <script src="/public/admin assets/js/notify/bootstrap-notify.min.js"></script> -->
     <script src="/public/admin assets/js/notify/index.js"></script>
 
     <!-- Apexchar js -->

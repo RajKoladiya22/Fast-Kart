@@ -7,7 +7,8 @@ const AdminPage = async (req, res) => {
     let Categorylist = await CategoryModel.find({}).sort({
       lastUpdateTime: -1,
     });
-    return res.render("admin/adminindex", { Categorylist });
+    let product = await ProductModel.find({}).populate('sub_id').populate('cat_id');
+    return res.render("admin/adminindex", { Categorylist, product });
   } catch (err) {
     console.log(err);
     return false;
@@ -20,15 +21,29 @@ const AddProductPage = async (req, res) => {
   return res.render("admin/add-new-product", { category, subcategory });
 };
 
+const ProductPage = async(req, res)=>{
+  try{
+    let Categorylist = await CategoryModel.find({}).sort({
+      lastUpdateTime: -1,
+    });
+    let product = await ProductModel.find({}).populate('sub_id').populate('cat_id');
+    return res.render("admin/product", { Categorylist,product, messages : req.flash('msg') });
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+  
+}
+
 const categoryPage = async (req, res) => {
-  return res.render("admin/add-new-category");
+  return res.render("admin/add-new-category",{messages : req.flash('msg')});
 };
 
 const Viewsubcategory = async (req, res) => {
   try {
     let subcat = await SubcategoryModel.find({}).populate("categoryId");
 
-    return res.render("admin/subcategory", { subcat });
+    return res.render("admin/subcategory", { subcat, messages : req.flash('msg') });
   } catch (err) {
     console.error(err);
     return false;
@@ -38,7 +53,7 @@ const Viewsubcategory = async (req, res) => {
 const categorylistpage = async (req, res) => {
   try {
     let rec = await CategoryModel.find({}).sort({ lastUpdateTime: -1 });
-    return res.render("admin/category", { rec });
+    return res.render("admin/category", { rec, messages : req.flash('msg') });
   } catch (err) {
     console.log(err);
     return false;
@@ -68,6 +83,7 @@ const deleteData = async (req, res) => {
       await SubcategoryModel.deleteMany({ categoryId: req.query.id });
       if (DelRec) {
         console.log("Data Deleted");
+        req.flash('msg', `${DelImg.cat_name} Deleted!!`)
         return res.redirect("back");
       }
     } else {
@@ -104,9 +120,12 @@ const SelectOptionHendal = async (req, res) => {
   }
 };
 
+
+
 module.exports = {
   AdminPage,
   AddProductPage,
+  ProductPage,
   categoryPage,
   categorylistpage,
   subcategoryPage,
@@ -114,4 +133,5 @@ module.exports = {
   Viewsubcategory,
   deleteSubData,
   SelectOptionHendal,
+
 };

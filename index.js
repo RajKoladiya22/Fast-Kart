@@ -8,6 +8,7 @@ const passport= require('passport');
 const passportStrategy = require('./config/passportstretegy');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const flash = require('connect-flash'); 
 
 app.use(cookieParser());
 
@@ -29,6 +30,7 @@ app.set('view engine', 'ejs');
 app.use('/public',express.static(path.join(__dirname,'public')));
 app.use('/uploads',express.static(path.join(__dirname,'uploads')));
 
+app.use(flash()); 
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setUser);

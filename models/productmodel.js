@@ -1,17 +1,46 @@
 const mongoose = require('mongoose');
 
 const ProductModel = mongoose.Schema({
-    pro_id : {
+    cat_id : {
         type : mongoose.Schema.Types.ObjectId,
         ref: 'category',
         required: false,
     },
-    cat_img : {
+    sub_id : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref: 'subcategory',
+        required: false,
+    },
+    pro_name : {
         type : String,
         require : true
     },
-    cat_icon : {
+    pro_unit : {
         type : String,
+        require : true
+    },
+    pro_tags : {
+        type : String,
+        require : true
+    },
+    pro_Thumb : {
+        type : Array,
+        require : true
+    },
+    pro_imgs : {
+        type : Array,
+        require : true
+    },
+    pro_video : {
+        type : Array,
+        require : true
+    },
+    pro_cprice : {
+        type : Number,
+        require : true
+    },
+    pro_oprice : {
+        type : Number,
         require : true
     },
     lastUpdateTime :{

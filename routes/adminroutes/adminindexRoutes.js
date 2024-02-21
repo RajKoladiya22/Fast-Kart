@@ -6,6 +6,7 @@ const admincontroller = require('../../controller/admincontroller/admincontrolle
 
 routes.get('/admin',admincontroller.AdminPage);
 routes.get('/addproduct',admincontroller.AddProductPage);
+routes.get('/products',admincontroller.ProductPage);
 routes.get('/addcategory',admincontroller.categoryPage);
 routes.get('/addsubcategory',admincontroller.subcategoryPage);
 routes.get('/subcategory',admincontroller.Viewsubcategory);

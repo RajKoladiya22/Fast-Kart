@@ -1,22 +1,24 @@
 const express = require('express');
 
 const routes = express.Router();
-const LodinController = require('../controller/loginController');
+const LoginController = require('../controller/loginController');
 const passport = require('passport');
 
 
 
-routes.get('/',LodinController.loginPage);
-routes.get('/signup',LodinController.RegisterPage);
-routes.post('/addUser',LodinController.AddUser);
-routes.post('/loginUser',passport.authenticate('local',{failureRedirect : '/'}),LodinController.loginUser);
-routes.get('/logout',LodinController.LogOut)
+routes.get('/',LoginController.loginPage);
+routes.get('/signup',LoginController.RegisterPage);
+routes.post('/addUser',LoginController.AddUser);
+routes.post('/loginUser',passport.authenticate('local',{failureRedirect : '/'}),LoginController.loginUser);
+routes.get('/logout',LoginController.LogOut)
 //forgot password
-routes.get('/forgotpage',LodinController.ForgotPage)
-routes.get('/otp',LodinController.OtpPage);
-routes.post('/SendOtp',LodinController.SendOtp);
-routes.post('/postOtp',LodinController.postOtp)  
+routes.get('/forgotpassword',LoginController.ForgotPasswordPage);
+routes.post('/SendOtp',LoginController.SendOtp);
+routes.get('/otp',LoginController.OtpPage);
+routes.post('/postOtp',LoginController.postOtp);
+routes.get('/NewPassword',LoginController.NewPasswordPage);
+routes.post('/newpassword',LoginController.newpassword);
 
-routes.get('/index',passport.chekUser,LodinController.IndexPage);
+routes.get('/index',passport.chekUser,LoginController.IndexPage);
 
 module.exports=routes;

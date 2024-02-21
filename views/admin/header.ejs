@@ -11,7 +11,7 @@
     <meta name="author" content="pixelstrap">
     <link rel="icon" href="/public/admin assets/images/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="/public/admin assets/images/favicon.png" type="image/x-icon">
-    <title>Fastkart - Add New Product</title>
+    <title>Fastkart - Admin</title>
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -58,6 +58,13 @@
 </head>
 
 <body>
+        <script>
+            window.setTimeout(()=> {
+                $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                    $(this).remove(); 
+                });
+            }, 4000);
+        </script>
     <!-- tap on top start -->
     <div class="tap-top">
         <span class="lnr lnr-chevron-up"></span>
@@ -200,7 +207,7 @@
                 <div id="sidebarEffect"></div>
                 <div>
                     <div class="logo-wrapper logo-wrapper-center">
-                        <a href="index.html" data-bs-original-title="" title="">
+                        <a href="/admin" data-bs-original-title="" title="">
                             <img class="img-fluid for-white" src="/public/admin assets/images/logo/full-white.png" alt="logo">
                         </a>
                         <div class="back-btn">
@@ -233,40 +240,44 @@
                                     </a>
                                 </li>
 
-                                <li class="sidebar-list">
+                                <!-- <li class="sidebar-list">
                                     <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
                                         <i class="ri-store-3-line"></i>
                                         <span>Product</span>
                                     </a>
                                     <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="#">Prodcts</a>
+                                            <a href="/addproduct">Prodcts</a>
                                         </li>
 
                                         <li>
                                             <a href="/addproduct">Add New Products</a>
                                         </li>
                                     </ul>
-                                </li>
+                                </li> -->
 
                                 <li class="sidebar-list">
                                     <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
                                         <i class="ri-list-check-2"></i>
-                                        <span>Category</span>
+                                        <span>Listing</span>
                                     </a>
                                     <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="/addcategorylist">Category List</a>
+                                            <a href="/addcategorylist">Category</a>
                                         </li>
 
-                                        <li>
+                                        <!-- <li>
                                             <a href="/addcategory">Add New Category</a>
-                                        </li>
+                                        </li> -->
                                         <li>
                                             <a href="/subcategory">Subategory</a>
                                         </li>
-                                        <li>
+                                        <!-- <li>
                                             <a href="/addsubcategory">Add New Subategory</a>
+                                        </li> -->
+                                        
+                                        <li>
+                                            <a href="/products">Prodcts</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -430,3 +441,5 @@
                 </div>
             </div>
             <!-- Page Sidebar Ends-->
+
+            
