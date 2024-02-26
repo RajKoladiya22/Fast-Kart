@@ -7,7 +7,7 @@ const flash = require('connect-flash');
 
 const loginPage = async (req, res) => {
   if (res.locals.users) {
-    return res.redirect("/index");
+    return res.redirect("/admin");
   }
   return res.render("login",{ msg:req.flash('msg')});
 };
@@ -15,7 +15,6 @@ const loginPage = async (req, res) => {
 const RegisterPage = async (req, res) => {
   return res.render("register");
 };
-
 
 const AddUser = async (req, res) => {
   try {
@@ -43,7 +42,7 @@ const AddUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
-  return res.redirect("/index");
+  return res.redirect("/admin");
 };
 
 const LogOut = async (req, res) => {
@@ -163,10 +162,10 @@ const newpassword = async(req, res)=>{
   }
 }
 
-const IndexPage = async (req, res) => {
+const adminindexPage = async (req, res) => {
   let subcategories = await Subcategory.find({}).populate("categoryId");
   let category = await CategoryModel.find({}).sort({ lastUpdateTime: -1 });
-  return res.render("index", { category, subcategories });
+  return res.render("admin/adminindex", { category, subcategories });
 };
 
 module.exports = {
@@ -183,5 +182,5 @@ module.exports = {
   NewPasswordPage,
   newpassword,
 
-  IndexPage,
+  adminindexPage,
 };

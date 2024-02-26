@@ -1,4 +1,13 @@
 <%- include('header') %>
+<% if(messages && messages.length>0){%>
+    <div class="hilirio alert">
+        <div class=" alertmag m-0" role="alert">
+            <strong>
+                <%= messages %>
+            </strong>
+        </div>
+    </div>
+    <%} %>
 
             <!-- Container-fluid starts-->
             <div class="page-body">
@@ -9,9 +18,9 @@
                             <div class="card card-table">
                                 <div class="card-body">
                                     <div class="title-header option-title">
-                                        <h5>All Category</h5>
+                                        <h5>All Subcategory</h5>
                                         <form class="d-inline-flex">
-                                            <a href="/addcategory" class="align-items-center btn btn-theme d-flex">
+                                            <a href="/addsubcategory" class="align-items-center btn btn-theme d-flex">
                                                 <i data-feather="plus-square"></i>Add New
                                             </a>
                                         </form>
@@ -225,7 +234,7 @@
 
     <!-- Plugins JS -->
     <script src="/public/admin assets/js/sidebar-menu.js"></script>
-    <script src="/public/admin assets/js/notify/bootstrap-notify.min.js"></script>
+    <!-- <script src="/public/admin assets/js/notify/bootstrap-notify.min.js"></script> -->
     <script src="/public/admin assets/js/notify/index.js"></script>
 
     <!-- Data table js -->

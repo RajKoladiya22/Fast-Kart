@@ -2,7 +2,7 @@ const { default: mongoose } = require('mongoose');
 const CategoryModel = require('../../models/categorymodel');
 const SubcategoryModel = require('../../models/subcategorymodel');
 const ProductModel = require('../../models/productmodel');
-
+const fs = require("fs");
 
 const Addcategory = async(req, res)=>{
     try{
@@ -32,8 +32,9 @@ const Addsubcategory = async(req, res)=>{
             subcat_name, 
         });
         if(Add){
+            req.flash('msg', `${subcat_name} Added!!`);
             console.log('Subcategory Added');
-            return res.redirect('back');
+            return res.redirect('/subcategory');
         }
     } catch(err){
         console.log(err);
@@ -43,8 +44,6 @@ const Addsubcategory = async(req, res)=>{
 
 const Addproduct = async(req, res)=>{
     try{
-        console.log("Form Data:", req.body);
-        console.log("File Data:", req.files);
         const {cat_name, sub_name, pro_name, pro_unit, pro_tags,  pro_cprice, pro_oprice} = req.body;
 
         let Product = await ProductModel.create({
@@ -61,7 +60,7 @@ const Addproduct = async(req, res)=>{
         });
         if(Product){
             req.flash('msg', `${pro_name} Added!!`);
-            return res.redirect('/products');
+            return res.redirect('/product');
         }
     }catch(err){
         console.log(err);
@@ -69,8 +68,49 @@ const Addproduct = async(req, res)=>{
     }
 }
 
+const deleteData = async (req, res) => {
+    try {
+      let DelId = req.query.id;
+  
+      let DelImg = await CategoryModel.findById(DelId);
+      if (DelImg.cat_img || file) {
+        fs.unlinkSync(DelImg.cat_img);
+  
+        let DelRec = await CategoryModel.findByIdAndDelete(DelId);
+        await SubcategoryModel.deleteMany({ categoryId: req.query.id });
+        if (DelRec) {
+          console.log("Data Deleted");
+          req.flash('msg', `${DelImg.cat_name} Deleted!!`)
+          return res.redirect("back");
+        }
+      } else {
+        console.log(`Image not found`);
+      }
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
+  };
+
+  const deleteSubData = async (req, res) => {
+    try {
+      let DelId = req.query.id;
+  
+      let DelRec = await SubcategoryModel.findByIdAndDelete(DelId);
+      if (DelRec) {
+        console.log("Data Deleted");
+        return res.redirect("back");
+      }
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
+  };
+
 module.exports={
     Addcategory,
     Addsubcategory,
     Addproduct,
+    deleteData,
+    deleteSubData,
 }

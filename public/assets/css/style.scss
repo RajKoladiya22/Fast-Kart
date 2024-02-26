@@ -1063,7 +1063,7 @@ header {
 
                     .categories-list-6 {
                         @include categories-list();
-                        top: -990%;
+                        top: 0%;
                     }
 
                     &:hover {

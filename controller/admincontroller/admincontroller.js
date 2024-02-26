@@ -4,11 +4,11 @@ const ProductModel = require("../../models/productmodel");
 const fs = require("fs");
 const AdminPage = async (req, res) => {
   try {
-    let Categorylist = await CategoryModel.find({}).sort({
+    let category  = await CategoryModel.find({}).sort({
       lastUpdateTime: -1,
     });
     let product = await ProductModel.find({}).populate('sub_id').populate('cat_id');
-    return res.render("admin/adminindex", { Categorylist, product });
+    return res.render("admin/adminindex", { category , product, messages : req.flash('msg') });
   } catch (err) {
     console.log(err);
     return false;
@@ -62,52 +62,14 @@ const categorylistpage = async (req, res) => {
 
 const subcategoryPage = async (req, res) => {
   try {
-    console.log(res.locals.users);
     let category = await CategoryModel.find({});
-    return res.render("admin/add-new-subcategory", { category });
+    return res.render("admin/add-new-subcategory", { category , messages : req.flash('msg')});
   } catch (err) {
     console.error(err);
     return false;
   }
 };
 
-const deleteData = async (req, res) => {
-  try {
-    let DelId = req.query.id;
-
-    let DelImg = await CategoryModel.findById(DelId);
-    if (DelImg.cat_img || file) {
-      fs.unlinkSync(DelImg.cat_img);
-
-      let DelRec = await CategoryModel.findByIdAndDelete(DelId);
-      await SubcategoryModel.deleteMany({ categoryId: req.query.id });
-      if (DelRec) {
-        console.log("Data Deleted");
-        req.flash('msg', `${DelImg.cat_name} Deleted!!`)
-        return res.redirect("back");
-      }
-    } else {
-      console.log(`Image not found`);
-    }
-  } catch (err) {
-    console.log(err);
-    return false;
-  }
-};
-const deleteSubData = async (req, res) => {
-  try {
-    let DelId = req.query.id;
-
-    let DelRec = await SubcategoryModel.findByIdAndDelete(DelId);
-    if (DelRec) {
-      console.log("Data Deleted");
-      return res.redirect("back");
-    }
-  } catch (err) {
-    console.log(err);
-    return false;
-  }
-};
 
 const SelectOptionHendal = async (req, res) => {
   try {
@@ -120,7 +82,16 @@ const SelectOptionHendal = async (req, res) => {
   }
 };
 
-
+const EditData = async(req, res)=>{
+  try{
+    ID = req.query.id;
+    let singlecat = await CategoryModel.findById(ID)
+    return res.render('admin/edit-category' , {singlecat, messages : req.flash('msg')})
+  }catch(err){
+    console.log(err);
+    return false;
+  }
+}
 
 module.exports = {
   AdminPage,
@@ -129,9 +100,7 @@ module.exports = {
   categoryPage,
   categorylistpage,
   subcategoryPage,
-  deleteData,
   Viewsubcategory,
-  deleteSubData,
   SelectOptionHendal,
-
+  EditData,
 };

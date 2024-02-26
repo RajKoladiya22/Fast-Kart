@@ -20,7 +20,7 @@
                             <div class="card card-table">
                                 <div class="card-body">
                                     <div class="title-header option-title">
-                                        <h5>All Category</h5>
+                                        <h5>All Product</h5>
                                         <form class="d-inline-flex">
                                             <a href="/addproduct" class="align-items-center btn btn-theme d-flex">
                                                 <i data-feather="plus-square"></i>Add New
@@ -34,10 +34,12 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Sr no.</th>
+                                                        <th>Category Name</th>
+                                                        <th>Subcategory Name</th>
                                                         <th>Product Name</th>
-                                                        <th>Date</th>
+                                                        <th>Current Price</th>
+                                                        <th>Original Price</th>
                                                         <th>Product Image</th>
-                                                        <th>Icon</th>
                                                         <th>Option</th>
                                                     </tr>
                                                 </thead>
@@ -45,32 +47,40 @@
                                                 <tbody>
 
 
-                                                    <% Categorylist.map((val, i)=>{ i=i+1%>
+                                                    <% product.map((val, i)=>{ i=i+1%>
                                                         <tr>
                                                             <td>
                                                                 <%= i %>
                                                             </td>
                                                             <td>
-                                                                <%= val.cat_name %>
+                                                                <%= val.cat_id.cat_name %>
                                                             </td>
 
                                                             <td>
-                                                                <%= val.lastUpdateTime.toLocaleDateString('en-GB') %>
+                                                                <%= val.sub_id.subcat_name %>
+                                                            </td>
+
+                                                            <td>
+                                                                <%= val.pro_name %>
+                                                            </td>
+
+                                                            <td>
+                                                                <%= val.pro_cprice %>
+                                                            </td>
+
+                                                            <td>
+                                                                <%= val.pro_oprice %>
                                                             </td>
 
                                                             <td>
                                                                 <div class="table-image">
-                                                                    <img src="<%= val.cat_img %>" class="img-fluid"
-                                                                        alt="">
+                                                                    <% val.pro_Thumb.forEach((img)=>{%>
+                                                                        <img src="<%= img %>" alt="">
+                                                                    <%}) %>
                                                                 </div>
                                                             </td>
 
-                                                            <td>
-                                                                <div class="category-icon">
-                                                                    <img src="<%= val.cat_icon  %>" class="img-fluid"
-                                                                        alt="">
-                                                                </div>
-                                                            </td>
+                                                            
 
                                                             
 

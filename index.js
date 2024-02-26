@@ -43,6 +43,7 @@ app.use(setNoCache = (req, res, next) => {
 })
 
 app.use('/',require('./routes/loginRoutes'));
+app.use('/',require('./routes/indexRoutes'));
 app.use('/',require('./routes/adminroutes/CrudRoutes'));
 app.use('/',require('./routes/adminroutes/adminindexRoutes'));
 

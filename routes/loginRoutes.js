@@ -19,6 +19,6 @@ routes.post('/postOtp',LoginController.postOtp);
 routes.get('/NewPassword',LoginController.NewPasswordPage);
 routes.post('/newpassword',LoginController.newpassword);
 
-routes.get('/index',passport.chekUser,LoginController.IndexPage);
+// routes.get('/admin',passport.chekUser,LoginController.adminindexPage);
 
 module.exports=routes;

@@ -6,14 +6,14 @@ const admincontroller = require('../../controller/admincontroller/admincontrolle
 
 routes.get('/admin',admincontroller.AdminPage);
 routes.get('/addproduct',admincontroller.AddProductPage);
-routes.get('/products',admincontroller.ProductPage);
+routes.get('/product',admincontroller.ProductPage);
 routes.get('/addcategory',admincontroller.categoryPage);
 routes.get('/addsubcategory',admincontroller.subcategoryPage);
 routes.get('/subcategory',admincontroller.Viewsubcategory);
 routes.get('/addcategorylist',admincontroller.categorylistpage);
-routes.get('/deleteData',admincontroller.deleteData);
-routes.get('/deleteSubData',admincontroller.deleteSubData);
 routes.get('/api/subcategories', admincontroller.SelectOptionHendal);
+
+routes.get('/EditData',admincontroller.EditData)
 
 
 

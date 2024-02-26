@@ -1,5 +1,4 @@
 const express = require('express');
-
 const routes = express.Router();
 const CrudController = require('../../controller/admincontroller/CrudController');
 const multer = require('multer');
@@ -35,5 +34,7 @@ const productfile = multer({
 routes.post('/category', fileUpload, CrudController.Addcategory);
 routes.post('/subcategory', fileUpload, CrudController.Addsubcategory);
 routes.post('/productadd', productfile, CrudController.Addproduct);
+routes.get('/deleteData',CrudController.deleteData);
+routes.get('/deleteSubData',CrudController.deleteSubData);
 
 module.exports=routes;
