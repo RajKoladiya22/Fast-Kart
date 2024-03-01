@@ -107,10 +107,32 @@ const deleteData = async (req, res) => {
     }
   };
 
+const editcategory = async(req, res)=>{
+  try{
+    let ID = req.body.editId;
+
+    let UpDate = await CategoryModel.findByIdAndUpdate(ID,{
+      cat_name : req.body.cat_name,
+      cat_img : req.file.path,
+      cat_icon : req.body.cat_icon,
+    })
+
+    if(UpDate){
+      req.flash('msg', `${req.body.cat_name} Updated !!`);
+      return res.redirect('/addcategorylist');
+    }
+
+  }catch(err){
+    console.log(err);
+    return false;
+  }
+}
+
 module.exports={
     Addcategory,
     Addsubcategory,
     Addproduct,
     deleteData,
     deleteSubData,
+    editcategory,
 }

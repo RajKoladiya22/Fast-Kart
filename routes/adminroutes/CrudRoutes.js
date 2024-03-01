@@ -36,5 +36,6 @@ routes.post('/subcategory', fileUpload, CrudController.Addsubcategory);
 routes.post('/productadd', productfile, CrudController.Addproduct);
 routes.get('/deleteData',CrudController.deleteData);
 routes.get('/deleteSubData',CrudController.deleteSubData);
+routes.post('/editcategory',fileUpload,CrudController.editcategory)
 
 module.exports=routes;
