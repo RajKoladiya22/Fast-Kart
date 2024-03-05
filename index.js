@@ -13,8 +13,8 @@ const cors = require('cors');
 
 app.set('view engine', 'ejs');
 app.use(cookieParser());
-app.use(express.urlencoded());
 app.use(express.json());
+app.use(express.urlencoded());
 app.use(cors());
 
 

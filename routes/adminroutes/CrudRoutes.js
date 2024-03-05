@@ -34,13 +34,14 @@ const productfile = multer({
 //API
 routes.post('/addcategoryapi', fileUpload, CrudController.AddcategoryAPI);
 routes.post('/addsubcategoryapi', fileUpload, CrudController.AddsubcategoryAPI);
+routes.post('/addproductapi', fileUpload, CrudController.AddproductAPI);
 
 
 //ADD DATA
 routes.post('/addcategorydata', fileUpload, CrudController.Addcategory);
 routes.post('/addsubcategorydata', fileUpload, CrudController.Addsubcategory);
 
-routes.post('/productadd', productfile, CrudController.Addproduct);
+//routes.post('/productadd', productfile, CrudController.Addproduct);
 //DELETE DATA
 routes.get('/deleteData',CrudController.deleteCategoryData);
 routes.get('/deleteSubData',CrudController.deleteSubcatData);
