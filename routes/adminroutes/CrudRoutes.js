@@ -31,11 +31,20 @@ const productfile = multer({
     { name: 'pro_video', maxCount: 1 }
 ]);
 
-routes.post('/category', fileUpload, CrudController.Addcategory);
-routes.post('/subcategory', fileUpload, CrudController.Addsubcategory);
+//API
+routes.post('/addcategoryapi', fileUpload, CrudController.AddcategoryAPI);
+routes.post('/addsubcategoryapi', fileUpload, CrudController.AddsubcategoryAPI);
+
+
+//ADD DATA
+routes.post('/addcategorydata', fileUpload, CrudController.Addcategory);
+routes.post('/addsubcategorydata', fileUpload, CrudController.Addsubcategory);
+
 routes.post('/productadd', productfile, CrudController.Addproduct);
-routes.get('/deleteData',CrudController.deleteData);
-routes.get('/deleteSubData',CrudController.deleteSubData);
+//DELETE DATA
+routes.get('/deleteData',CrudController.deleteCategoryData);
+routes.get('/deleteSubData',CrudController.deleteSubcatData);
+//EDIT DATA
 routes.post('/editcategory',fileUpload,CrudController.editcategory)
 
 module.exports=routes;

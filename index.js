@@ -8,11 +8,14 @@ const passport= require('passport');
 const passportStrategy = require('./config/passportstretegy');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-const flash = require('connect-flash'); 
+const flash = require('connect-flash');  
+const cors = require('cors');
 
+app.set('view engine', 'ejs');
 app.use(cookieParser());
-
 app.use(express.urlencoded());
+app.use(express.json());
+app.use(cors());
 
 
 app.use(session({
@@ -25,8 +28,6 @@ app.use(session({
     }
 }));
 
-
-app.set('view engine', 'ejs');
 app.use('/public',express.static(path.join(__dirname,'public')));
 app.use('/uploads',express.static(path.join(__dirname,'uploads')));
 

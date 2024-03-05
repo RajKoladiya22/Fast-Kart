@@ -33,7 +33,8 @@
                                                 <tbody>
 
 
-                                                    <% rec.map((val, i)=>{ i=i+1%>
+                                                    <% rec.map((val, i) => { %>
+                                                        <% i = i++; %>
                                                         <tr>
                                                             <td>
                                                                 <%= i %>
@@ -41,9 +42,9 @@
                                                             <td>
                                                                 <%= val.cat_name %>
                                                             </td>
-
+                                                            
                                                             <td>
-                                                                <%= val.lastUpdateTime.toLocaleDateString('en-GB') %>
+                                                                <%= val.lastUpdateTime %>
                                                             </td>
 
                                                             <td>
@@ -162,7 +163,7 @@
                                                             </div>
                                                         </div>
                                                         <!-- Delete Modal Box End -->
-                                                        <% }) %>
+                                                    <% }) %>
                                                 </tbody>
                                             </table>
 
